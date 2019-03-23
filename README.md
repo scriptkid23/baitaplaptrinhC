@@ -8,11 +8,18 @@ Viết chương trình nhập vào số phần tử của một dãy (gọi là 
  a) Tìm tần suất của các phần tử trong dãy (tần suất: số lần xuất hiện).
  b) Vẽ lược đồ tần suất của các phần tử trong dãy (sử dụng dấu * để biểu hiện)
  c) Tính xác suất của các phần tử trong dãy
+
+
 Bài 36:
 Trăm trâu trăm cỏ, trâu đứng ăn năm, trâu nằm ăn ba, lụ khụ trâu già ba con một bó. Hỏi bao nhiêu
 trâu đứng, bao nhiêu trâu nằm, bao nhiêu trâu già?
+
+
 Bài 50:
 Tính tổng các phần tử của ma trận theo từng cột (tính tổng giá trị các phần tử trên mỗi cột);
+
+
+
 Bài 57:
 Nhập hai ma trận các phần tử nguyên, kích thước được quyết định bởi người sử dụng. Kiểm tra kích
 thước các ma trận có thỏa mãn điều kiện để thực hiện các phép tính ma trận dưới đây hay không, nếu thỏa mãn thì
