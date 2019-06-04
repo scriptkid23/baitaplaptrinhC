@@ -26,5 +26,5 @@ thước các ma trận có thỏa mãn điều kiện để thực hiện các 
 thực hiện các phép tương ứng theo yêu cầu.
 Thực hiện tính tổng, hiệu của hai ma trận
 
-#demoOOP:
+# demoOOP:
 Hưỡng dẫn sử dụng lập trình hướng đối tượng trong C++ kết hợp với Linkedlist để xử lý 
