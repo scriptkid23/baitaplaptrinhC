@@ -1,3 +1,4 @@
+# Các bài tập cơ sở trong lập trình C
 Bài 28:
 Viết chương trình nhập vào số phần tử của một dãy (gọi là n), sau đó nhập vào một dãy số nguyên gồm n phần tử.
 Nhập vào một số nguyên x nào đó, tìm xem phần tử x này có mặt trong dãy hay không? Nếu có mặt trong dãy thì có mấy
@@ -26,5 +27,5 @@ thước các ma trận có thỏa mãn điều kiện để thực hiện các 
 thực hiện các phép tương ứng theo yêu cầu.
 Thực hiện tính tổng, hiệu của hai ma trận
 
-# demoOOP:
+# OOP sử dụng C++
 Hưỡng dẫn sử dụng lập trình hướng đối tượng trong C++ kết hợp với Linkedlist để xử lý 
