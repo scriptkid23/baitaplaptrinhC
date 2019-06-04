@@ -25,3 +25,6 @@ Nhập hai ma trận các phần tử nguyên, kích thước được quyết �
 thước các ma trận có thỏa mãn điều kiện để thực hiện các phép tính ma trận dưới đây hay không, nếu thỏa mãn thì
 thực hiện các phép tương ứng theo yêu cầu.
 Thực hiện tính tổng, hiệu của hai ma trận
+
+demoOOP:
+Hưỡng dẫn sử dụng lập trình hướng đối tượng trong C++ kết hợp với Linkedlist để xử lý 
