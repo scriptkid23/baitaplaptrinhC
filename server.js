@@ -43,7 +43,12 @@ const start = async () => {
         response.data.choices.at(-1).message["content"]
       );
     });
-
+    fastify.get('/', async (request, reply) => {
+      reply
+          .code(200)
+          .type('text/html')
+          .send(`This is a telegram bot server created to tell you jokes.`);
+  })
     fastify
       .listen({ port: port })
       .then(() => console.log("Listening on port", port));
