@@ -1,4 +1,4 @@
-const fastify = require("fastify")({ logger: true });
+const fastify = require("fastify");
 
 const { Telegraf } = require("telegraf");
 
@@ -11,12 +11,14 @@ let port = process.env.PORT;
 
 let baseURL = "https://api.openai.com/v1/chat/completions";
 const start = async () => {
+
+  const bot = new Telegraf(token);
+  const app = fastify();
   try {
-    const bot = new Telegraf(token);
-    let webhookURL = process.env.HEROKU_URL + bot.token
+    let webhookURL = process.env.HEROKU_URL + "/ "+bot.token
     const webhook = await bot.createWebhook({ domain: webhookURL });
 
-    fastify.post(bot.secretPathComponent(), (req, rep) =>
+    app.post(bot.secretPathComponent(), (req, rep) =>
       webhook(req.raw, rep.raw)
     );
 
@@ -43,17 +45,12 @@ const start = async () => {
         response.data.choices.at(-1).message["content"]
       );
     });
-    fastify.get('/', async (request, reply) => {
-      reply
-          .code(200)
-          .type('text/html')
-          .send(`This is a telegram bot server created to tell you jokes.`);
-  })
-    fastify
+
+    app
       .listen({ port: port })
       .then(() => console.log("Listening on port", port));
   } catch (err) {
-    fastify.log.error(err);
+    app.log.error(err);
     process.exit(1);
   }
 };
