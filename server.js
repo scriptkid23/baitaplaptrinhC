@@ -16,11 +16,7 @@ const start = async () => {
   const bot = new Telegraf(token);
   const app = fastify();
   try {
-    let webhookURL = process.env.HEROKU_URL + "/"+ bot.token
-
-    app.post(bot.secretPathComponent(), (req, rep) =>
-      webhook(req.raw, rep.raw)
-    );
+    let webhookURL = process.env.HEROKU_URL;
 
     bot.on(message("text"), async (ctx) => {
       let bodyContent = JSON.stringify({
