@@ -12,7 +12,7 @@ bot.on(message("text"), async (ctx) => {
   let headersList = {
     Accept: "*/*",
     "Content-Type": "application/json",
-    "Authorization": "Bearer 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"
+    "Authorization": "Bearer ?"
   };
   let reqOptions = {
     url: "https://api.openai.com/v1/chat/completions",
