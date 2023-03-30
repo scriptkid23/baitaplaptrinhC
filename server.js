@@ -6,7 +6,7 @@ require("dotenv").config();
 const bot = new Telegraf(process.env.BOT_TOKEN);
 const app = express();
 const start = async () => {
-  app.use(await bot.createWebhook({ domain: process.env.MY_HEROKU_URL }));
+  app.use(await bot.createWebhook({ domain: process.env.MY_HEROKU_URL + "/" + process.env.BOT_TOKEN}));
   bot.on(message("text"), (ctx) => ctx.reply("Hello"));
   app.listen(process.env.PORT, () => console.log("Listening on port", process.env.PORT));
 };
