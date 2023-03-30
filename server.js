@@ -10,13 +10,13 @@ let chat_gpt_token = process.env.CHAT_GPT_TOKEN;
 let port = process.env.PORT;
 
 let baseURL = "https://api.openai.com/v1/chat/completions";
+
 const start = async () => {
 
   const bot = new Telegraf(token);
   const app = fastify();
   try {
-    let webhookURL = process.env.HEROKU_URL + "/ "+bot.token
-    const webhook = await bot.createWebhook({ domain: webhookURL });
+    let webhookURL = process.env.HEROKU_URL + "/"+ bot.token
 
     app.post(bot.secretPathComponent(), (req, rep) =>
       webhook(req.raw, rep.raw)
@@ -46,9 +46,15 @@ const start = async () => {
       );
     });
 
-    app
-      .listen({ port: port })
-      .then(() => console.log("Listening on port", port));
+   app.listen({ port: port })
+   bot.launch({
+    webhook: {
+      domain: webhookURL,
+      port: port
+    }
+  })
+
+  
   } catch (err) {
     app.log.error(err);
     process.exit(1);
