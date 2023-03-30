@@ -1,4 +1,4 @@
-const fastify = require("fastify");
+const {fastify} = require("fastify");
 
 const { Telegraf } = require("telegraf");
 const { message } = require("telegraf/filters");
@@ -17,6 +17,8 @@ const start = async () => {
     const app = fastify();
     let webhookURL = process.env.MY_HEROKU_URL;
 
+    const webhook = await bot.createWebhook({ domain: webhookURL + "/" + token });
+    app.post(bot.secretPathComponent(), (req, rep) => webhook(req.raw, rep.raw));
     bot.on(message("text"), async (ctx) => {
       let bodyContent = JSON.stringify({
         model: chat_gpt_model,
@@ -42,13 +44,6 @@ const start = async () => {
     });
 
     app.listen({ port: port });
-    bot.launch({
-      webhook: {
-        domain: webhookURL,
-        hookPath: token,
-        port: port,
-      },
-    });
   } catch (err) {
     console.log(err);
     app.log.error(err);
