@@ -1,7 +1,7 @@
 const fastify = require("fastify");
 
 const { Telegraf } = require("telegraf");
-
+const { message } = require("telegraf/filters");
 require("dotenv").config();
 
 let token = process.env.BOT_TOKEN;
@@ -12,11 +12,10 @@ let port = process.env.PORT;
 let baseURL = "https://api.openai.com/v1/chat/completions";
 
 const start = async () => {
-
-  const bot = new Telegraf(token);
-  const app = fastify();
   try {
-    let webhookURL = process.env.HEROKU_URL;
+    const bot = new Telegraf(token);
+    const app = fastify();
+    let webhookURL = process.env.MY_HEROKU_URL;
 
     bot.on(message("text"), async (ctx) => {
       let bodyContent = JSON.stringify({
@@ -42,16 +41,16 @@ const start = async () => {
       );
     });
 
-   app.listen({ port: port })
-   bot.launch({
-    webhook: {
-      domain: webhookURL,
-      port: port
-    }
-  })
-
-  
+    app.listen({ port: port });
+    bot.launch({
+      webhook: {
+        domain: webhookURL,
+        hookPath: token,
+        port: port,
+      },
+    });
   } catch (err) {
+    console.log(err);
     app.log.error(err);
     process.exit(1);
   }
