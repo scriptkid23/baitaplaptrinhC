@@ -8,12 +8,12 @@ let token = process.env.BOT_TOKEN;
 let chat_gpt_model = process.env.CHAT_GPT_MODEL;
 let chat_gpt_token = process.env.CHAT_GPT_TOKEN;
 let port = process.env.PORT;
-let webhookURL = process.env.WEB_HOOK_URL;
+
 let baseURL = "https://api.openai.com/v1/chat/completions";
 const start = async () => {
   try {
     const bot = new Telegraf(token);
-
+    let webhookURL = process.env.HEROKU_URL + bot.token
     const webhook = await bot.createWebhook({ domain: webhookURL });
 
     fastify.post(bot.secretPathComponent(), (req, rep) =>
