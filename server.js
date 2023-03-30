@@ -10,7 +10,9 @@ bot.start((ctx) => ctx.reply('Welcome'))
 if(process.env.environment == "PRODUCTION"){
   bot.launch({
     webhook:{
+      
         domain: process.env.MY_HEROKU_URL,// Your domain URL (where server code will be deployed)
+        hookPath: process.env.BOT_TOKEN,
         port: process.env.PORT || 8000
     }
   }).then(() => {
