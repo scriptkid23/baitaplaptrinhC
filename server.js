@@ -10,6 +10,6 @@ expressApp.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-bot.hears(/./, (ctx) => ctx.reply("Hello"));
-bot.startPolling();
+// const bot = new Telegraf(process.env.BOT_TOKEN);
+// bot.hears(/./, (ctx) => ctx.reply("Hello"));
+// bot.startPolling();
