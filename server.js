@@ -13,13 +13,6 @@ expressApp.get("/", (req, res) => {
 
 
 const bot = new Telegraf(process.env.BOT_TOKEN);
-expressApp.use(
-  async () =>
-    await bot.createWebhook({
-      domain: process.env.WEB_HOOK_URL,
-      path: process.env.BOT_TOKEN,
-    })
-);
 
 expressApp.listen(port, () => {
   console.log(`Listening on port ${port}`);
