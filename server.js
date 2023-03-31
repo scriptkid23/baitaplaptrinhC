@@ -30,8 +30,9 @@ bot.on(message("text"), async (ctx) => {
     headers: headersList,
     data: bodyContent,
   };
+  await ctx.telegram.sendChatAction(ctx.message.chat.id, "typing");
+  
   try {
-    await ctx.telegram.sendChatAction(ctx.message.chat.id, "typing");
     let response = await axios.request(reqOptions);
     await ctx.telegram.sendMessage(
       ctx.message.chat.id,
