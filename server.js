@@ -5,9 +5,9 @@ const axios = require("axios");
 
 const handleSendImageUsingGPT = async (ctx, message) => {
   let bodyContent = JSON.stringify({
-    "prompt": message,
-    "n": 1,
-    "size": "1024x1024",
+    prompt: message,
+    n: 1,
+    size: "1024x1024",
   });
 
   let headersList = {
@@ -25,17 +25,15 @@ const handleSendImageUsingGPT = async (ctx, message) => {
   try {
     await ctx.telegram.sendChatAction(ctx.message.chat.id, "typing");
     let response = await axios.request(reqOptions);
-    await ctx.replyWithPhoto(response.data.data[0].url)
-   
+    await ctx.replyWithPhoto(response.data.data[0].url);
   } catch (error) {
     await ctx.telegram.sendMessage(ctx.message.chat.id, error?.message);
   }
-
-}
+};
 const handleMessageUsingGPT = async (ctx, message) => {
   let bodyContent = JSON.stringify({
     model: "gpt-3.5-turbo",
-    messages: [{ role: "user", content: message}],
+    messages: [{ role: "user", content: message }],
   });
   let headersList = {
     Accept: "*/*",
@@ -75,14 +73,7 @@ const start = async () => {
     console.log(`Listening on port ${port}`);
   });
 
-  bot.command("msg", async (ctx) => {
-    const regex = /(\/msg)?(.*)/im;
-    let msg_raw = ctx.update.message.text;
-    let msg = regex.exec(msg_raw)[2];
-    if (msg === "") return;
-
-    await handleMessageUsingGPT(ctx, msg);
-  });
+  bot.command("msg", async (ctx) => {});
 
   bot.command("img", async (ctx) => {
     const regex = /(\/img)?(.*)/im;
@@ -91,17 +82,11 @@ const start = async () => {
     if (msg === "") return;
 
     await handleSendImageUsingGPT(ctx, msg);
-  })
-  bot.on(message("text"), async (ctx) => {});
-
-  // if (process.env.ENVIRONMENT.toLowerCase() === "production") {
-  //   expressApp.use(
-  //     await bot.createWebhook({
-  //       domain: process.env.WEB_HOOK_DOMAIN,
-  //       path: process.env.BOT_TOKEN,
-  //     })
-  //   );
-  // }
+  });
+  bot.on(message("text"), async (ctx) => {
+    let msg = ctx.update.message.text;
+    await handleMessageUsingGPT(ctx, msg);
+  });
 
   bot.startPolling();
 };
