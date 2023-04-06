@@ -94,14 +94,14 @@ const start = async () => {
   })
   bot.on(message("text"), async (ctx) => {});
 
-  if (process.env.ENVIRONMENT.toLowerCase() === "production") {
-    expressApp.use(
-      await bot.createWebhook({
-        domain: process.env.WEB_HOOK_DOMAIN,
-        path: process.env.BOT_TOKEN,
-      })
-    );
-  }
+  // if (process.env.ENVIRONMENT.toLowerCase() === "production") {
+  //   expressApp.use(
+  //     await bot.createWebhook({
+  //       domain: process.env.WEB_HOOK_DOMAIN,
+  //       path: process.env.BOT_TOKEN,
+  //     })
+  //   );
+  // }
 
   bot.startPolling();
 };
