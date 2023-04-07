@@ -73,7 +73,12 @@ const start = async () => {
     console.log(`Listening on port ${port}`);
   });
 
-  bot.command("msg", async (ctx) => {});
+  bot.command("msg", async (ctx) => {
+    const regex = /(\/msg)?(.*)/im;
+    let msg = regex.exec(ctx.update.message.text)[2];
+    if (msg === "") return;
+    await handleMessageUsingGPT(ctx, msg);
+  });
 
   bot.command("img", async (ctx) => {
     const regex = /(\/img)?(.*)/im;
