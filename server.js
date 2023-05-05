@@ -55,7 +55,7 @@ const handleMessageUsingGPT = async (ctx, message) => {
       response.data.choices[0].message["content"]
     );
   } catch (error) {
-    await ctx.telegram.sendMessage(ctx.message.chat.id, error?.message);
+    await ctx.telegram.sendMessage(ctx.message.chat.id, "Sorry, I don't known 😏");
   }
 };
 
